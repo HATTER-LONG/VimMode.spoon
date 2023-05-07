@@ -168,7 +168,7 @@ local function createVimModal(vim)
 
   modal.bindMotionsToModal = function(mdl, type)
     return mdl
-      :bindWithRepeat({}, '0', function()
+      :bindWithRepeat({"shift"}, 'h', function()
         -- we've already started adding a count here
         if vim.commandState:getCount(type) then
           pushDigitTo(type, 0)()
@@ -176,7 +176,7 @@ local function createVimModal(vim)
           fireMotion(LineBeginning)
         end
       end)
-      :bindWithRepeat({'shift'}, '4', motion(LineEnd)) -- $
+      :bindWithRepeat({'shift'}, 'l', motion(LineEnd)) -- $
       :bindWithRepeat({}, 'b', motion(BackWord))
       :bindWithRepeat({'shift'}, 'b', motion(BackBigWord))
       :bindWithRepeat({}, 'e', motion(EndOfWord))
